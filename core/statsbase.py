@@ -9,7 +9,7 @@ class StatsBase(PluginBase):
         return None
 
 
-    def add(self, data={}, models={}):
+    def add(self, data={}):
         pass
 
 

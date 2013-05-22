@@ -4,6 +4,7 @@ from core.statspool import StatsPool
 from core.projects import Projects
 from core import settings
 from core import models
+import logging
 import webapp
 from tornado.ioloop import IOLoop
 
@@ -18,6 +19,17 @@ def main():
 
     # load the main configuration file
     settings.read(conf_path)
+
+    # set the global logging settings and level
+    if settings.Settings()['server']['debug']:
+        logging.basicConfig(level=logging.DEBUG,
+                            filename=settings.Settings()['server']['logfile'],
+                            format=settings.Settings()['server']['logformat'])
+    else:
+        logging.basicConfig(level=logging.WARNING,
+                            filename=settings.Settings()['server']['logfile'],
+                            format=settings.Settings()['server']['logformat'])
+
 
     # load the project settings and add the paths to the additional stats provided by the projects
     Projects().load()

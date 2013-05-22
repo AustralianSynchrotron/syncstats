@@ -4,9 +4,7 @@ import logging
 from settings import Settings
 from pluginmanager.pluginmanager import PluginManager
 
-logging.basicConfig()
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG) #TODO: make it depend on the global debug setting
 
 class __StatsPoolSingleton(object):
 

@@ -2,6 +2,8 @@ import os
 import sys
 import json
 
+from string import Template
+
 class __SettingsSingleton(object):
     d = {}
 
@@ -21,5 +23,6 @@ def read(conf_path):
     # store the result into the dictionary
     Settings().clear()
     settings_file = open(conf_path, 'r')
-    Settings().update(json.loads(settings_file.read()%repl_paths))
+    set_temp = Template(settings_file.read())
+    Settings().update(json.loads(set_temp.safe_substitute(repl_paths)))
     settings_file.close()

@@ -19,7 +19,7 @@ class LaunchState(StatsBase):
         pass
 
 
-    def add(self, data, models):
+    def add(self, data):
         print data
 
 
