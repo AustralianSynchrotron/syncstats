@@ -15,7 +15,7 @@ class RunningInstances(StatsBase):
         pass
 
 
-    def add(self, data):
+    def set(self, data, project_name):
         pass
 
 

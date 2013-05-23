@@ -20,8 +20,9 @@ setup(
     packages=['syncstats', 'syncstats/core', 'syncstats/pluginmanager', 'syncstats/stats', 'syncstats/webapp', 'syncstats/example'],
     install_requires=[
         'django>=1.5',
-        'argparse',
         'tornado >= 2.4.1',
+        'argparse',
+        'python-dateutil',
         'pyinotify >= 0.9.4',
     ],
     classifiers=[

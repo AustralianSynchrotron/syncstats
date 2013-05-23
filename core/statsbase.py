@@ -9,7 +9,7 @@ class StatsBase(PluginBase):
         return None
 
 
-    def add(self, data={}):
+    def set(self, data={}, project_name=""):
         pass
 
 

@@ -1,10 +1,10 @@
 
+import logging.config
 import argparse
 from core.statspool import StatsPool
 from core.projects import Projects
 from core import settings
 from core import models
-import logging
 import webapp
 from tornado.ioloop import IOLoop
 
@@ -17,19 +17,14 @@ def main():
     args = vars(parser.parse_args())
     conf_path = args['<config_file>']
 
-    # load the main configuration file
+    # load the main configuration file and set a global debug level flag
     settings.read(conf_path)
+    settings.Settings()['server']['debug'] = settings.Settings()['server']\
+                                             ['logging']['handlers']['console']\
+                                             ['level']=="DEBUG"
 
     # set the global logging settings and level
-    if settings.Settings()['server']['debug']:
-        logging.basicConfig(level=logging.DEBUG,
-                            filename=settings.Settings()['server']['logfile'],
-                            format=settings.Settings()['server']['logformat'])
-    else:
-        logging.basicConfig(level=logging.WARNING,
-                            filename=settings.Settings()['server']['logfile'],
-                            format=settings.Settings()['server']['logformat'])
-
+    logging.config.dictConfig(settings.Settings()['server']['logging'])
 
     # load the project settings and add the paths to the additional stats provided by the projects
     Projects().load()

@@ -7,16 +7,7 @@ from core.statspool import StatsPool
 
 logger = logging.getLogger(__name__)
 
-##### !!!!!!!!!!!!!!!!!!
-##### TODO: Validate user input
-#####       Where should it go: here or in the classes
-#####       Should the classes provide getter and setter and hide the variables
-##### !!!!!!!!!!!!!!!!!!
 
-
-# curl -i -X GET http://localhost:8888/projects
-# curl -i -X GET http://localhost:8888/projects/scatterCloud
-# curl -i -X POST http://localhost:8888/projects/scatterCloud/stats/LaunchState -d "{\"aaa\": \"bbbbb\", \"yyyyyy\": \"xxxxx\"}"
 
 class SyncStatsRequestHandler(RequestHandler):
     def set_default_headers(self):
@@ -78,10 +69,9 @@ class PostStatsData(SyncStatsRequestHandler):
     def post(self, proj_name, stats_name):
         try:
             data = json.loads(self.request.body)
-            print proj_name, stats_name
             st = Projects().get(proj_name).get_stats(stats_name)
             if st is not None:
-                st.add(data)
+                st.set(data, proj_name)
             else:
                 logger.error("The project %s doesn't contain the %s stats!"%(proj_name,stats_name))
                 raise HTTPError(400)

@@ -7,7 +7,7 @@ from django.core.management import call_command
 
 
 def init(search_path_list):
-    #build list of available models
+    # build list of available models
     model_list = []
     for search_path in search_path_list:
         if any("models.py" in fname for fname in os.listdir(search_path)):
