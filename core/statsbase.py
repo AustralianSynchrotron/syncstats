@@ -13,5 +13,5 @@ class StatsBase(PluginBase):
         pass
 
 
-    def get(self, analysis):
-        pass
+    def get(self, analysis_name, data):
+      return getattr(self, analysis_name)(analysis_name, data)

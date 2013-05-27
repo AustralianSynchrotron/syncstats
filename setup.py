@@ -17,7 +17,9 @@ setup(
     url='https://github.com/AustralianSynchrotron/syncstats',
     author='Andreas Moll',
     author_email='andreas.moll@synchrotron.org.au',
-    packages=['syncstats', 'syncstats/core', 'syncstats/pluginmanager', 'syncstats/stats', 'syncstats/webapp', 'syncstats/example'],
+    packages=['syncstats', 'syncstats/core', 'syncstats/pluginmanager',
+              'syncstats/stats', 'syncstats/webapp',
+              'syncstats/example', 'syncstats/demo'],
     install_requires=[
         'django>=1.5',
         'tornado >= 2.4.1',
