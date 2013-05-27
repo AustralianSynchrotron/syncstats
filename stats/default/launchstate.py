@@ -66,11 +66,9 @@ class LaunchState(StatsBase):
                                                      enter__month=month)
 
         # create histogram
-        hist_array = []
-        for iDay in range(1,calendar.monthrange(year, month)[1]+1):
-            hist_array.append({"date": iDay, "calls": 0})
-
+        days = calendar.monthrange(year, month)[1]
+        hist_array = [{"date": day+1, "calls": 0} for day in range(days)]
         for launch in launches:
             hist_array[launch.enter.day-1]['calls'] += 1
-        
+
         return hist_array
