@@ -55,6 +55,7 @@ class LaunchState(StatsBase):
 
     def NumberPerMonth(self, analysis_name, data):
         from default import models
+        from django.db.models import Count
 
         # get data
         year = data['year']
@@ -67,8 +68,8 @@ class LaunchState(StatsBase):
 
         # create histogram
         days = calendar.monthrange(year, month)[1]
-        hist_array = [{"date": day+1, "calls": 0} for day in range(days)]
+        hist_array = [{'bin': day+1, 'value': 0} for day in range(days)]
         for launch in launches:
-            hist_array[launch.enter.day-1]['calls'] += 1
+            hist_array[launch.enter.day-1]['value'] += 1
 
         return hist_array

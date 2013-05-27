@@ -38,9 +38,10 @@ On Ubuntu 12.10 (as user):
 Example
 -------
 
-SyncStats comes with a working example consisting of a configuration file, data generator and a web fronted based on d3 (http://d3js.org/).
+SyncStats comes with a working example consisting of a configuration file, data generator and a web frontend based on D3.js (http://d3js.org/).
 
 Usage:
+
 1. Start the daemon with: ./syncstatsd example/settings.conf
 2. Add the example data: python example/test_data.py
 3. Open file 'example/view_data.html' with your web browser
